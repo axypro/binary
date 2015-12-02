@@ -26,6 +26,25 @@ class Binary
     }
 
     /**
+     * Returns a slice of a string
+     *
+     * @param string $string
+     * @param int $offset
+     * @param int $length [optional]
+     * @return string
+     */
+    public static function getSlice($string, $offset, $length = null)
+    {
+        if (self::checkMB()) {
+            return mb_substr($string, $offset, $length, '8bit');
+        }
+        if ($length === null) {
+            $length = strlen($string);
+        }
+        return substr($string, $offset, $length);
+    }
+
+    /**
      * @return bool
      */
     private static function checkMB()
