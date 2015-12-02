@@ -63,6 +63,37 @@ class Binary
     }
 
     /**
+     * Returns a byte from a string
+     *
+     * @param string $string
+     * @param int $index
+     * @param bool $signed [optional]
+     * @return int
+     */
+    public static function getByteFromString($string, $index, $signed = false)
+    {
+        $char = self::getSlice($string, $index, 1);
+        return self::getByteFromChar($char, $signed);
+    }
+
+    /**
+     * Convert a binary string to an array of bytes
+     *
+     * @param string $string
+     * @param bool $signed [optional]
+     * @return int
+     */
+    public static function unpackBytes($string, $signed = false)
+    {
+        $bytes = [];
+        $len = self::getLength($string);
+        for ($i = 0; $i < $len; $i++) {
+            $bytes[] = self::getByteFromString($string, $i, $signed);
+        }
+        return $bytes;
+    }
+
+    /**
      * @return bool
      */
     private static function checkMB()

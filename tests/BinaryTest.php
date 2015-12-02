@@ -61,4 +61,29 @@ class BinaryTest extends \PHPUnit_Framework_TestCase
             ['aA', false, 97],
         ];
     }
+
+    /**
+     * covers ::getByteFromString
+     */
+    public function testGetByteFromString()
+    {
+        $string = 'This is строка.';
+        $this->assertSame(84, Binary::getByteFromString($string, 0));
+        $this->assertSame(84, Binary::getByteFromString($string, 0, true));
+        $this->assertSame(209, Binary::getByteFromString($string, 10));
+        $this->assertSame(-47, Binary::getByteFromString($string, 10, true));
+        $this->assertSame(0, Binary::getByteFromString($string, 100));
+    }
+
+    /**
+     * covers ::unpackBytes
+     */
+    public function testUnpackBytes()
+    {
+        $string = 'This is строка.';
+        $u = [84, 104, 105, 115, 32, 105, 115, 32, 209, 129, 209, 130, 209, 128, 208, 190, 208, 186, 208, 176, 46];
+        $s = [84, 104, 105, 115, 32, 105, 115, 32, -47, -127, -47, -126, -47, 128, -48, -66, -48, -70, -48, -80, 46];
+        $this->assertSame($u, Binary::unpackBytes($string));
+        $this->assertSame($s, Binary::unpackBytes($string, true));
+    }
 }
