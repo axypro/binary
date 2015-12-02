@@ -45,6 +45,24 @@ class Binary
     }
 
     /**
+     * Returns a (signed|unsigned) byte from a char
+     *
+     * @param string $char
+     * @param bool $signed [optional]
+     * @return int
+     */
+    public static function getByteFromChar($char, $signed = false)
+    {
+        $byte = ord($char);
+        if ($signed) {
+            if ($byte > 128) {
+                $byte = $byte - 256;
+            }
+        }
+        return $byte;
+    }
+
+    /**
      * @return bool
      */
     private static function checkMB()
