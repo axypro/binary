@@ -8,3 +8,7 @@ Working with binary strings
 PHP 5.4+
 
 Library does not require any dependencies (except composer packages).
+
+## `Binary`
+
+Class `axy\binary\Binary` with static methods.
