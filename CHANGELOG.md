@@ -1,3 +1,7 @@
+### dev-master
+
+* Travis
+
 ### 0.1.0 (02.12.2015)
 
 * Binary::getLength
