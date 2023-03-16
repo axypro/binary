@@ -1,9 +1,7 @@
 <?php
-/**
- * @package axy\binary
- * @author Oleg Grigoriev <go.vasac@gmail.com>
- */
 
-namespace axy\binary;
+declare(strict_types=1);
 
-require(__DIR__.'/../index.php');
+namespace axy\binary\tests;
+
+require_once __DIR__ . '/../index.php';

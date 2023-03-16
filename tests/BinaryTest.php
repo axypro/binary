@@ -1,8 +1,6 @@
 <?php
-/**
- * @package axy\binary
- * @author Oleg Grigoriev <go.vasac@gmail.com>
- */
+
+declare(strict_types=1);
 
 namespace axy\binary\tests;
 
@@ -11,12 +9,12 @@ use axy\binary\Binary;
 /**
  * coversDefaultClass axy\binary\Binary
  */
-class BinaryTest extends \PHPUnit_Framework_TestCase
+class BinaryTest extends BaseTestCase
 {
     /**
      * covers ::getLength
      */
-    public function testGetLength()
+    public function testGetLength(): void
     {
         $this->assertSame(21, Binary::getLength('This is строка.'));
     }
@@ -24,7 +22,7 @@ class BinaryTest extends \PHPUnit_Framework_TestCase
     /**
      * covers ::getSlice
      */
-    public function testGetSlice()
+    public function testGetSlice(): void
     {
         $string = 'This is строка.';
         $this->assertSame('is стр', Binary::getSlice($string, 5, 9));
@@ -34,19 +32,13 @@ class BinaryTest extends \PHPUnit_Framework_TestCase
     /**
      * covers ::getByteFromChar
      * @dataProvider providerGetByteFromChar
-     * @param string $char
-     * @param bool $signed
-     * @param int $byte
      */
-    public function testGetByteFromChar($char, $signed, $byte)
+    public function testGetByteFromChar(string $char, bool $signed, int $byte): void
     {
         $this->assertSame($byte, Binary::getByteFromChar($char, $signed));
     }
 
-    /**
-     * @return array
-     */
-    public function providerGetByteFromChar()
+    public static function providerGetByteFromChar(): array
     {
         return [
             ['a', false, 97],
@@ -65,7 +57,7 @@ class BinaryTest extends \PHPUnit_Framework_TestCase
     /**
      * covers ::getByteFromString
      */
-    public function testGetByteFromString()
+    public function testGetByteFromString(): void
     {
         $string = 'This is строка.';
         $this->assertSame(84, Binary::getByteFromString($string, 0));
@@ -78,7 +70,7 @@ class BinaryTest extends \PHPUnit_Framework_TestCase
     /**
      * covers ::unpackBytes
      */
-    public function testUnpackBytes()
+    public function testUnpackBytes(): void
     {
         $string = 'This is строка.';
         $u = [84, 104, 105, 115, 32, 105, 115, 32, 209, 129, 209, 130, 209, 128, 208, 190, 208, 186, 208, 176, 46];

@@ -10,10 +10,8 @@
  * @uses PHP5.4+
  */
 
-namespace axy\binary;
+declare(strict_types=1);
 
-if (!is_file(__DIR__.'/vendor/autoload.php')) {
-    throw new \LogicException('Please: composer install');
-}
+namespace axy\binary;
 
 require_once(__DIR__.'/vendor/autoload.php');
